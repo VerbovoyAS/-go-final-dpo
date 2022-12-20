@@ -25,10 +25,10 @@ func GetContent(fileName string) string {
 	return string(result)
 }
 
-func CreateFile(d *st.Data) {
-	file, err := os.Create("data/sms.csv")
+func CreateFile(d *st.Data, fileName string) {
+	file, err := os.Create(fileName)
 
-	if err := os.Chmod("data/sms.csv", 0664); err != nil {
+	if err := os.Chmod(fileName, 0664); err != nil {
 		fmt.Println(err)
 	}
 

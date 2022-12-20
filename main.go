@@ -19,7 +19,7 @@ func main() {
 
 	content := service.GetContent(app.SkillboxSmsPath())
 	service.ParsingSms(&data, content)
-	service.CreateFile(&data)
+	service.CreateFile(&data, app.DataSmsPath())
 
 	content = service.GetContent(app.DataSmsPath())
 	service.ParsingSms(&data, content)
