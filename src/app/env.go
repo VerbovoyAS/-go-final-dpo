@@ -25,6 +25,13 @@ var (
 	pathDataSms string
 )
 
+// Переменные API MMS
+var (
+	server  string
+	portMms string
+	urlMms  string
+)
+
 // InitEnv Иницизизация переменных ENV
 func InitEnv() {
 	if err := godotenv.Load(); err != nil {
@@ -40,6 +47,10 @@ func InitEnv() {
 
 	folderData = getEnv("FOLDER_DATA")
 	pathDataSms = getEnv("PATH_DATA_SMS")
+
+	server = getEnv("SERVER")
+	portMms = getEnv("PORT_MMS")
+	urlMms = getEnv("URL_MMS")
 }
 
 // Проверяет и возвращает ENV переменную
@@ -71,4 +82,9 @@ func SkillboxSmsPath() string {
 // DataSmsPath Путь до файла обработанных данных SMS
 func DataSmsPath() string {
 	return folderData + pathDataSms
+}
+
+// PathMms Ссылка API получения данных MMS
+func PathMms() string {
+	return fmt.Sprintf("%s:%s%s", server, portMms, urlMms)
 }

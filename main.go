@@ -15,7 +15,7 @@ func init() {
 func main() {
 	fmt.Println("")
 
-	data := st.Data{Sms: []st.SMSData{}}
+	data := st.Data{Sms: []st.SMSData{}, Mms: []st.MMSData{}}
 
 	content := service.GetContent(app.SkillboxSmsPath())
 	service.ParsingSms(&data, content)
@@ -24,6 +24,12 @@ func main() {
 	content = service.GetContent(app.DataSmsPath())
 	service.ParsingSms(&data, content)
 
-	fmt.Println(data)
+	body, err := app.Request(app.PathMms())
+	if err != nil {
+		panic(err)
+	}
 
+	service.ParsingMms(body, &data)
+
+	fmt.Println(data)
 }
