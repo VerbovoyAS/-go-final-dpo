@@ -37,5 +37,9 @@ func main() {
 	service.ParsingVoiceCall(&data, content)
 	service.CreateFile(data.VoiceCallContent(), app.DataVoicePath())
 
+	// Email
+	content = service.GetContent(app.SkillboxEmailPath())
+	service.ParsingEmail(&data, content)
+	service.CreateFile(data.EmailContent(), app.DataEmailPath())
 	fmt.Println(data)
 }

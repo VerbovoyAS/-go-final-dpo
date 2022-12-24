@@ -12,6 +12,7 @@ var (
 	pathProvider      string
 	pathCountryCode   string
 	pathVoiceProvider string
+	pathEmailProvider string
 )
 
 // Переменные хранения фалов Skillbox
@@ -19,6 +20,7 @@ var (
 	folderSkillbox        string
 	pathSkillboxSms       string
 	pathSkillboxVoiceCall string
+	pathSkillboxEmail     string
 )
 
 // Переменные хранения обработанных фалов
@@ -26,6 +28,7 @@ var (
 	folderData    string
 	pathDataSms   string
 	pathDataVoice string
+	pathDataEmail string
 )
 
 // Переменные API MMS
@@ -45,14 +48,17 @@ func InitEnv() {
 	pathProvider = getEnv("PATH_PROVIDER")
 	pathCountryCode = getEnv("PATH_COUNTRY_CODE")
 	pathVoiceProvider = getEnv("PATH_VOICE_PROVIDER")
+	pathEmailProvider = getEnv("PATH_EMAIL_PROVIDER")
 
 	folderSkillbox = getEnv("FOLDER_SKILLBOX")
 	pathSkillboxSms = getEnv("PATH_SKILLBOX_SMS")
 	pathSkillboxVoiceCall = getEnv("PATH_SKILLBOX_VOICE_CALL")
+	pathSkillboxEmail = getEnv("PATH_SKILLBOX_EMAIL")
 
 	folderData = getEnv("FOLDER_DATA")
 	pathDataSms = getEnv("PATH_DATA_SMS")
 	pathDataVoice = getEnv("PATH_DATA_VOICE")
+	pathDataEmail = getEnv("PATH_DATA_EMAIL")
 
 	server = getEnv("SERVER")
 	portMms = getEnv("PORT_MMS")
@@ -85,6 +91,11 @@ func VoiceProviderPath() string {
 	return folderFiles + pathVoiceProvider
 }
 
+// EmailProviderPath Путь до файла провайдеров E-mael
+func EmailProviderPath() string {
+	return folderFiles + pathEmailProvider
+}
+
 // SkillboxSmsPath Путь до файла skillbox SMS данных
 func SkillboxSmsPath() string {
 	return folderSkillbox + pathSkillboxSms
@@ -100,6 +111,11 @@ func DataVoicePath() string {
 	return folderData + pathDataVoice
 }
 
+// DataEmailPath Путь до файла обработанных данных E-mail
+func DataEmailPath() string {
+	return folderData + pathDataEmail
+}
+
 // PathMms Ссылка API получения данных MMS
 func PathMms() string {
 	return fmt.Sprintf("%s:%s%s", server, portMms, urlMms)
@@ -108,4 +124,9 @@ func PathMms() string {
 // SkillboxVoiceCallPath Путь до файла skillbox VoiceCall данных
 func SkillboxVoiceCallPath() string {
 	return folderSkillbox + pathSkillboxVoiceCall
+}
+
+// SkillboxEmailPath Путь до файла skillbox email данных
+func SkillboxEmailPath() string {
+	return folderSkillbox + pathSkillboxEmail
 }

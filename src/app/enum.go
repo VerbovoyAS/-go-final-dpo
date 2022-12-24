@@ -11,6 +11,7 @@ func InitEnum() {
 	initCountryCode()
 	initProvider()
 	initVoiceProvider()
+	initEmailProvider()
 }
 
 // initCountryCode Инициализирует данные по кодам стран из файла
@@ -29,6 +30,12 @@ func initProvider() {
 func initVoiceProvider() {
 	content := service.GetContent(VoiceProviderPath())
 	collectMap(content, enum.VoiceProvider)
+}
+
+// initEmailProvider Инициализирует данные по провайдерам E-mail из файла
+func initEmailProvider() {
+	content := service.GetContent(EmailProviderPath())
+	collectMap(content, enum.EmailProvider)
 }
 
 // Собирает map

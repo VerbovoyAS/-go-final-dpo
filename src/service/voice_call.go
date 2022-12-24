@@ -3,7 +3,6 @@ package service
 import (
 	st "go-final-dpo/src/structure"
 	"go-final-dpo/src/validate"
-	"strconv"
 	"strings"
 )
 
@@ -32,10 +31,10 @@ func ParsingVoiceCall(d *st.Data, content string) {
 
 		if validate.VoiceCall(str, VC_LENGTH, VC_COUNTRY, VC_PROVIDER) {
 
-			connectionStability, err := convertToFloat(str, VC_CONNECTION_STABILITY)
-			ttfb, err := convertToInt(str, VC_TTFB)
-			voicePurity, err := convertToInt(str, VC_VOICE_PURITY)
-			medianOfCallsTime, err := convertToInt(str, VC_MEDIAN_OF_CALLS_TIME)
+			connectionStability, err := convertToFloat(str[VC_CONNECTION_STABILITY])
+			ttfb, err := convertToInt(str[VC_TTFB])
+			voicePurity, err := convertToInt(str[VC_VOICE_PURITY])
+			medianOfCallsTime, err := convertToInt(str[VC_MEDIAN_OF_CALLS_TIME])
 
 			if err != nil {
 				continue
@@ -55,16 +54,5 @@ func ParsingVoiceCall(d *st.Data, content string) {
 
 	}
 
-	return
-}
-
-func convertToInt(s []string, indx int) (i int, err error) {
-	i, err = strconv.Atoi(s[indx])
-	return
-}
-
-func convertToFloat(s []string, indx int) (f float32, err error) {
-	n, err := strconv.ParseFloat(s[indx], 32)
-	f = float32(n)
 	return
 }
