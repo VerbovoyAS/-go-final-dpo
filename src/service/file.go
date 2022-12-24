@@ -3,7 +3,6 @@ package service
 import (
 	"bufio"
 	"fmt"
-	st "go-final-dpo/src/structure"
 	"io/ioutil"
 	"os"
 )
@@ -25,7 +24,7 @@ func GetContent(fileName string) string {
 	return string(result)
 }
 
-func CreateFile(d *st.Data, fileName string) {
+func CreateFile(content string, fileName string) {
 	file, err := os.Create(fileName)
 
 	if err := os.Chmod(fileName, 0664); err != nil {
@@ -39,10 +38,6 @@ func CreateFile(d *st.Data, fileName string) {
 	}
 	defer file.Close()
 
-	for _, str := range d.Sms {
-		s := str.ToString()
-		w.WriteString(s)
-	}
-
+	w.WriteString(content)
 	w.Flush()
 }

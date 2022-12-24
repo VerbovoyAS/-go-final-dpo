@@ -10,37 +10,43 @@ import (
 func InitEnum() {
 	initCountryCode()
 	initProvider()
+	initVoiceProvider()
 }
 
 // initCountryCode Инициализирует данные по кодам стран из файла
 func initCountryCode() {
 	content := service.GetContent(CountryCodePath())
-	parsingCountryCode(content)
+	collectMapCountryCode(content)
 }
 
 // initProvider Инициализирует данные по провайдерам из файла
 func initProvider() {
 	content := service.GetContent(ProviderPath())
-	parsingProvider(content)
+	collectMap(content, enum.Provider)
 }
 
-// Собирает map по провайдерам
-func parsingProvider(content string) {
+// initVoiceProvider Инициализирует данные по провайдерам голосовых звонков из файла
+func initVoiceProvider() {
+	content := service.GetContent(VoiceProviderPath())
+	collectMap(content, enum.VoiceProvider)
+}
+
+// Собирает map
+func collectMap(content string, m map[string]string) {
 	rows := strings.Split(content, "\n")
-	provider := enum.Provider
 
 	for _, row := range rows {
 		if row == "" {
 			continue
 		}
-		provider[row] = row
+		m[row] = row
 	}
 
 	return
 }
 
 // Собирает map по кодам стран
-func parsingCountryCode(content string) {
+func collectMapCountryCode(content string) {
 	rows := strings.Split(content, "\n")
 	code := enum.CountryCode
 

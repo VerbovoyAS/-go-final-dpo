@@ -15,21 +15,27 @@ func init() {
 func main() {
 	fmt.Println("")
 
-	data := st.Data{Sms: []st.SMSData{}, Mms: []st.MMSData{}}
+	data := st.Data{}
 
+	//SMS
 	content := service.GetContent(app.SkillboxSmsPath())
 	service.ParsingSms(&data, content)
-	service.CreateFile(&data, app.DataSmsPath())
+	service.CreateFile(data.VoiceSMSContent(), app.DataSmsPath())
 
 	content = service.GetContent(app.DataSmsPath())
 	service.ParsingSms(&data, content)
 
+	// MMS
 	body, err := app.Request(app.PathMms())
 	if err != nil {
 		panic(err)
 	}
-
 	service.ParsingMms(body, &data)
+
+	//VoiceCall
+	content = service.GetContent(app.SkillboxVoiceCallPath())
+	service.ParsingVoiceCall(&data, content)
+	service.CreateFile(data.VoiceCallContent(), app.DataVoicePath())
 
 	fmt.Println(data)
 }

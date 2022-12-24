@@ -6,11 +6,11 @@ import (
 )
 
 // Sms Проверяет Валидность данных смс
-func Sms(str []string) bool {
-	return len(str) == 4 && checkValueMap(enum.CountryCode, str[0]) && checkValueMap(enum.Provider, str[3])
+func Sms(str []string, length int, country int, provider int) bool {
+	return len(str) == length && checkValueMap(enum.CountryCode, str[country]) && checkValueMap(enum.Provider, str[provider])
 }
 
-// Mms Проверяет Валидность данных MMS
+// Mms Проверяет валидность данных MMS
 func Mms(mmsData st.MMSData) bool {
 	return checkValueMap(enum.CountryCode, mmsData.Country) && checkValueMap(enum.Provider, mmsData.Provider)
 }
@@ -19,6 +19,11 @@ func Mms(mmsData st.MMSData) bool {
 func checkValueMap(m map[string]string, str string) (ok bool) {
 	_, ok = m[str]
 	return
+}
+
+// VoiceCall Проверяет валидность данных Voice Call
+func VoiceCall(str []string, length int, country int, voiceProvider int) bool {
+	return len(str) == length && checkValueMap(enum.CountryCode, str[country]) && checkValueMap(enum.VoiceProvider, str[voiceProvider])
 }
 
 // CheckValueString Проверяет значение в массиве
