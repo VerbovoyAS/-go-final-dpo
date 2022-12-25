@@ -21,6 +21,7 @@ var (
 	pathSkillboxSms       string
 	pathSkillboxVoiceCall string
 	pathSkillboxEmail     string
+	pathSkillboxBilling   string
 )
 
 // Переменные хранения обработанных фалов
@@ -54,6 +55,7 @@ func InitEnv() {
 	pathSkillboxSms = getEnv("PATH_SKILLBOX_SMS")
 	pathSkillboxVoiceCall = getEnv("PATH_SKILLBOX_VOICE_CALL")
 	pathSkillboxEmail = getEnv("PATH_SKILLBOX_EMAIL")
+	pathSkillboxBilling = getEnv("PATH_SKILLBOX_BILLING")
 
 	folderData = getEnv("FOLDER_DATA")
 	pathDataSms = getEnv("PATH_DATA_SMS")
@@ -129,4 +131,9 @@ func SkillboxVoiceCallPath() string {
 // SkillboxEmailPath Путь до файла skillbox email данных
 func SkillboxEmailPath() string {
 	return folderSkillbox + pathSkillboxEmail
+}
+
+// SkillboxBillingPath Путь до файла skillbox Billing данных
+func SkillboxBillingPath() string {
+	return folderSkillbox + pathSkillboxBilling
 }

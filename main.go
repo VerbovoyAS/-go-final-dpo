@@ -41,5 +41,10 @@ func main() {
 	content = service.GetContent(app.SkillboxEmailPath())
 	service.ParsingEmail(&data, content)
 	service.CreateFile(data.EmailContent(), app.DataEmailPath())
+
+	// Billing
+	content = service.GetContent(app.SkillboxBillingPath())
+	service.ParsingBilling(&data, content)
+
 	fmt.Println(data)
 }
