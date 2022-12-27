@@ -7,7 +7,7 @@ import (
 )
 
 // Request Отправляет запрос и возвращает тело ответа
-func Request(url string) (body []byte, err error) {
+func Request(url string) (body []byte) {
 	res, err := http.Get(url)
 
 	if err != nil {
@@ -15,7 +15,8 @@ func Request(url string) (body []byte, err error) {
 	}
 
 	if res.StatusCode != 200 {
-		err = fmt.Errorf("status code not 200. Current code: %d", res.StatusCode)
+		fmt.Printf("status code not 200. Current code: %d", res.StatusCode)
+		return
 	}
 
 	body, err = ioutil.ReadAll(res.Body)

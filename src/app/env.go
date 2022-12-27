@@ -34,9 +34,10 @@ var (
 
 // Переменные API MMS
 var (
-	server  string
-	portMms string
-	urlMms  string
+	server     string
+	portServer string
+	urlMms     string
+	urlSupport string
 )
 
 // InitEnv Иницизизация переменных ENV
@@ -63,8 +64,9 @@ func InitEnv() {
 	pathDataEmail = getEnv("PATH_DATA_EMAIL")
 
 	server = getEnv("SERVER")
-	portMms = getEnv("PORT_MMS")
+	portServer = getEnv("PORT_SERVER")
 	urlMms = getEnv("URL_MMS")
+	urlSupport = getEnv("URL_SUPPORT")
 }
 
 // Проверяет и возвращает ENV переменную
@@ -120,7 +122,12 @@ func DataEmailPath() string {
 
 // PathMms Ссылка API получения данных MMS
 func PathMms() string {
-	return fmt.Sprintf("%s:%s%s", server, portMms, urlMms)
+	return fmt.Sprintf("%s:%s%s", server, portServer, urlMms)
+}
+
+// PathSupport Ссылка API получения данных Support
+func PathSupport() string {
+	return fmt.Sprintf("%s:%s%s", server, portServer, urlSupport)
 }
 
 // SkillboxVoiceCallPath Путь до файла skillbox VoiceCall данных

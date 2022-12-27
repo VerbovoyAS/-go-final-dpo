@@ -26,10 +26,7 @@ func main() {
 	service.ParsingSms(&data, content)
 
 	// MMS
-	body, err := app.Request(app.PathMms())
-	if err != nil {
-		panic(err)
-	}
+	body := app.Request(app.PathMms())
 	service.ParsingMms(body, &data)
 
 	//VoiceCall
@@ -45,6 +42,10 @@ func main() {
 	// Billing
 	content = service.GetContent(app.SkillboxBillingPath())
 	service.ParsingBilling(&data, content)
+
+	// Support
+	body = app.Request(app.PathSupport())
+	service.ParsingSupport(body, &data)
 
 	fmt.Println(data)
 }
