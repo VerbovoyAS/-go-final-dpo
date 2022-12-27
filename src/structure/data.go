@@ -7,6 +7,7 @@ type Data struct {
 	Email     []EmailData
 	Billing   []BillingData
 	Support   []SupportData
+	Incident  []IncidentData
 }
 
 func (d *Data) VoiceSMSContent() (content string) {

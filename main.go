@@ -47,5 +47,9 @@ func main() {
 	body = app.Request(app.PathSupport())
 	service.ParsingSupport(body, &data)
 
+	// Incident
+	body = app.Request(app.PathIncident())
+	service.ParsingIncident(body, &data)
+
 	fmt.Println(data)
 }
