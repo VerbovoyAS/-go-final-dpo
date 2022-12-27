@@ -2,9 +2,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"go-final-dpo/src/app"
 	"go-final-dpo/src/service"
 	st "go-final-dpo/src/structure"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 func init() {
@@ -52,4 +58,24 @@ func main() {
 	service.ParsingIncident(body, &data)
 
 	fmt.Println(data)
+	done := make(chan os.Signal, 1)
+	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+
+	router := mux.NewRouter()
+	router.HandleFunc("/", ArticlesCategoryHandler)
+
+	go func() {
+		if err := http.ListenAndServe(app.PathMyServer(), router); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("listen: %s\n", err)
+		}
+	}()
+	log.Print("Server Started")
+
+	<-done
+	log.Print("Server Stopped")
+}
+
+func ArticlesCategoryHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "OK")
 }
