@@ -61,8 +61,9 @@ func main() {
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
+	result := service.GetResultData(data)
 	router := mux.NewRouter()
-	router.HandleFunc("/", ArticlesCategoryHandler)
+	router.HandleFunc("/", result.GetResult)
 
 	go func() {
 		if err := http.ListenAndServe(app.PathMyServer(), router); err != nil && err != http.ErrServerClosed {
@@ -73,9 +74,4 @@ func main() {
 
 	<-done
 	log.Print("Server Stopped")
-}
-
-func ArticlesCategoryHandler(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "OK")
 }

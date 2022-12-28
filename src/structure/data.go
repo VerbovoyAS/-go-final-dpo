@@ -5,7 +5,7 @@ type Data struct {
 	Mms       []MMSData
 	VoiceCall []VoiceCallData
 	Email     []EmailData
-	Billing   []BillingData
+	Billing   BillingData
 	Support   []SupportData
 	Incident  []IncidentData
 }
