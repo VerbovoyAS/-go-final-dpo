@@ -3,6 +3,9 @@
 ## Запуск источника данных
 
  * Перейти в папку skillbox-diploma `cd skillbox-diploma`
+ * Инициализируйте приложение
+
+    `go mod init github.com/antondzhukov/skillbox-diploma`
  * Запустить приложение `go run main.go`
 ## Запуск приложения StatusPage
 ### Настройки
