@@ -3,6 +3,9 @@
 ## Запуск источника данных
 
  * Перейти в папку skillbox-diploma `cd skillbox-diploma`
+ * Клонируйте проект 
+
+   `git clone ./ https://github.com/antondzhukov/skillbox-diploma`
  * Инициализируйте приложение
 
     `go mod init github.com/antondzhukov/skillbox-diploma`
