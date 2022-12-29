@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"go-final-dpo/src/app"
 	"go-final-dpo/src/service"
@@ -19,8 +18,6 @@ func init() {
 }
 
 func main() {
-	fmt.Println("")
-
 	data := st.Data{}
 
 	//SMS
@@ -51,20 +48,18 @@ func main() {
 
 	// Support
 	body = app.Request(app.PathSupport())
-	service.ParsingSupport(body, &data)
+	service.ParsingSupport(&data, body)
 
 	// Incident
 	body = app.Request(app.PathIncident())
-	service.ParsingIncident(body, &data)
+	service.ParsingIncident(&data, body)
 
-	fmt.Println(data)
 	done := make(chan os.Signal, 1)
 	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	result := service.GetResultData(data)
 	router := mux.NewRouter()
-	router.HandleFunc("/", result.GetResult)
-
+	router.HandleFunc(app.PathMyServerUrl(), result.GetResult)
 	go func() {
 		if err := http.ListenAndServe(app.PathMyServer(), router); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)

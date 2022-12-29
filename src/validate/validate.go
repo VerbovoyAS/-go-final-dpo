@@ -30,14 +30,3 @@ func VoiceCall(str []string, length int, country int, voiceProvider int) bool {
 func Email(str []string, length int, country int, emailProvider int) bool {
 	return len(str) == length && checkValueMap(enum.CountryCode, str[country]) && checkValueMap(enum.EmailProvider, str[emailProvider])
 }
-
-// CheckValueString Проверяет значение в массиве
-func CheckValueString(s []string, str string) bool {
-	for _, v := range s {
-		if v == str {
-			return true
-		}
-	}
-
-	return false
-}

@@ -20,7 +20,7 @@ func ParsingBilling(d *st.Data, content string) {
 	length := len(b) - 1
 	// Читаем бит с право на лево
 	for i := length; i >= 0; i-- {
-		// Если длина текущиго бита привышает длину billing - пропускаем
+		// Если длина текущего бита превышает длину billing - пропускаем
 		if (len(b) - i) > len(mapBilling) {
 			continue
 		}

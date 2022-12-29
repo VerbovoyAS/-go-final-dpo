@@ -38,7 +38,7 @@ func initEmailProvider() {
 	collectMap(content, enum.EmailProvider)
 }
 
-// Собирает map
+// collectMap Собирает map
 func collectMap(content string, m map[string]string) {
 	rows := strings.Split(content, "\n")
 
@@ -52,7 +52,7 @@ func collectMap(content string, m map[string]string) {
 	return
 }
 
-// Собирает map по кодам стран
+// collectMapCountryCode Собирает map по кодам стран
 func collectMapCountryCode(content string) {
 	rows := strings.Split(content, "\n")
 	code := enum.CountryCode

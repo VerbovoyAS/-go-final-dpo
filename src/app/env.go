@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// Переменные хранения фалов для обработки
+// Переменные хранения фалов для ENUM
 var (
 	folderFiles       string
 	pathProvider      string
@@ -15,21 +15,13 @@ var (
 	pathEmailProvider string
 )
 
-// Переменные хранения фалов Skillbox
+// Переменные хранения фалов SKILLBOX
 var (
 	folderSkillbox        string
 	pathSkillboxSms       string
 	pathSkillboxVoiceCall string
 	pathSkillboxEmail     string
 	pathSkillboxBilling   string
-)
-
-// Переменные хранения обработанных фалов
-var (
-	folderData    string
-	pathDataSms   string
-	pathDataVoice string
-	pathDataEmail string
 )
 
 // Переменные API SKILLBOX
@@ -41,14 +33,22 @@ var (
 	urlIncident string
 )
 
+// Переменные хранения обработанных фалов
+var (
+	folderData    string
+	pathDataSms   string
+	pathDataVoice string
+	pathDataEmail string
+)
+
 // Переменные MY SERVER
 var (
 	myServer     string
 	myPortServer string
-	//myMainUrl    string
+	myMainUrl    string
 )
 
-// InitEnv Иницизизация переменных ENV
+// InitEnv Инициализация переменных ENV
 func InitEnv() {
 	if err := godotenv.Load(); err != nil {
 		panic("No .env file found")
@@ -79,7 +79,7 @@ func InitEnv() {
 
 	myServer = getEnv("MY_SERVER")
 	myPortServer = getEnv("MY_PORT_SERVER")
-	//myMainUrl = getEnv("MY_MAIN_URL")
+	myMainUrl = getEnv("MY_MAIN_URL")
 }
 
 // Проверяет и возвращает ENV переменную
@@ -148,9 +148,14 @@ func PathIncident() string {
 	return fmt.Sprintf("%s:%s%s", server, portServer, urlIncident)
 }
 
-// PathMyServer Ссылка API получения данных Incident
+// PathMyServer Host и port API получения данных о системе
 func PathMyServer() string {
 	return fmt.Sprintf("%s:%s", myServer, myPortServer)
+}
+
+// PathMyServerUrl Url API получения данных о системе
+func PathMyServerUrl() string {
+	return myMainUrl
 }
 
 // SkillboxVoiceCallPath Путь до файла skillbox VoiceCall данных

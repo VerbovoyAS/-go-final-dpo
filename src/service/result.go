@@ -35,6 +35,7 @@ func GetResultData(data st.Data) (res st.ResultT) {
 	return
 }
 
+// getSortSmsProvider Возвращает отсортированные данные SMS по провайдерам
 func getSortSmsProvider(data st.Data, res *st.ResultT) {
 	var smsData []st.SMSData
 	for _, sms := range data.Sms {
@@ -48,6 +49,7 @@ func getSortSmsProvider(data st.Data, res *st.ResultT) {
 	res.Data.SMS = append(res.Data.SMS, smsData)
 }
 
+// getSortSmsCountry Возвращает отсортированные данные SMS по странам
 func getSortSmsCountry(data st.Data, res *st.ResultT) {
 	var smsData []st.SMSData
 	for _, sms := range data.Sms {
@@ -61,6 +63,7 @@ func getSortSmsCountry(data st.Data, res *st.ResultT) {
 	res.Data.SMS = append(res.Data.SMS, smsData)
 }
 
+// getSortMmsProvider Возвращает отсортированные данные MMS по провайдерам
 func getSortMmsProvider(data st.Data, res *st.ResultT) {
 	var mmsData []st.MMSData
 	for _, mms := range data.Mms {
@@ -74,6 +77,7 @@ func getSortMmsProvider(data st.Data, res *st.ResultT) {
 	res.Data.MMS = append(res.Data.MMS, mmsData)
 }
 
+// getSortMmsCountry Возвращает отсортированные данные MMS по странам
 func getSortMmsCountry(data st.Data, res *st.ResultT) {
 	var mmsData []st.MMSData
 	for _, mms := range data.Mms {
@@ -87,6 +91,7 @@ func getSortMmsCountry(data st.Data, res *st.ResultT) {
 	res.Data.MMS = append(res.Data.MMS, mmsData)
 }
 
+// getSortEmail Возвращает отсортированные данные по Email
 func getSortEmail(data st.Data, res *st.ResultT) {
 	emailMap := getMapEmail(data)
 	emailMapSort := getSortMapEmail(emailMap)

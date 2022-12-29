@@ -13,6 +13,7 @@ type VoiceCallData struct {
 	MedianOfCallsTime   int
 }
 
+// ToString преобразует структуру в строку
 func (s *VoiceCallData) ToString() string {
 	return fmt.Sprintf(
 		"%s;%s;%s;%s;%f;%d;%d;%d\n",

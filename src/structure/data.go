@@ -10,6 +10,7 @@ type Data struct {
 	Incident  []IncidentData
 }
 
+// VoiceSMSContent Возвращает данные по SMS в виде строки
 func (d *Data) VoiceSMSContent() (content string) {
 	for _, v := range d.Sms {
 		content += v.ToString()
@@ -17,6 +18,7 @@ func (d *Data) VoiceSMSContent() (content string) {
 	return
 }
 
+// VoiceCallContent Возвращает данные по Voice Call в виде строки
 func (d *Data) VoiceCallContent() (content string) {
 	for _, v := range d.VoiceCall {
 		content += v.ToString()
@@ -24,6 +26,7 @@ func (d *Data) VoiceCallContent() (content string) {
 	return
 }
 
+// EmailContent Возвращает данные по Email в виде строки
 func (d *Data) EmailContent() (content string) {
 	for _, v := range d.Email {
 		content += v.ToString()

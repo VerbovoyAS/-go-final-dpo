@@ -1,4 +1,4 @@
 package enum
 
-// VoiceProvider Список разрещенных провайдеров голосовых сообщений
+// VoiceProvider Список разрешенных провайдеров голосовых сообщений
 var VoiceProvider = make(map[string]string)

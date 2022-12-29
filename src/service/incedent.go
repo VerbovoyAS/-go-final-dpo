@@ -5,7 +5,7 @@ import (
 	st "go-final-dpo/src/structure"
 )
 
-func ParsingIncident(body []byte, d *st.Data) {
+func ParsingIncident(d *st.Data, body []byte) {
 
 	var incidentData []st.IncidentData
 	if err := json.Unmarshal(body, &incidentData); err != nil {

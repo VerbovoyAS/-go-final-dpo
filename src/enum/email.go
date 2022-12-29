@@ -1,4 +1,4 @@
 package enum
 
-// EmailProvider Список разрещенных провайдеров E-mail
+// EmailProvider Список разрешенных провайдеров E-mail
 var EmailProvider = make(map[string]string)

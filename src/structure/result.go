@@ -30,6 +30,13 @@ func (res *ResultT) ToJson() (result []byte) {
 }
 
 func (res *ResultT) GetResult(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method != http.MethodGet {
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte("Не верно указан метод, используйте метод GET"))
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write(res.ToJson())
