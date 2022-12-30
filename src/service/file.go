@@ -9,9 +9,11 @@ import (
 
 // GetContent Открывает файл и возвращает его содержимое
 func GetContent(fileName string) string {
+	var result []byte
 	file, err := os.Open(fileName)
 	if err != nil {
 		fmt.Println(err)
+		return string(result)
 	}
 
 	defer func(file *os.File) {
@@ -21,10 +23,10 @@ func GetContent(fileName string) string {
 		}
 	}(file)
 
-	result, err := io.ReadAll(file)
+	result, _ = io.ReadAll(file)
 	if err != nil {
 		fmt.Println("Не смогли прочитать файл.", err)
-		panic("Не смогли прочитать файл")
+		return string(result)
 	}
 
 	return string(result)
@@ -32,6 +34,10 @@ func GetContent(fileName string) string {
 
 // CreateFile Создает файл
 func CreateFile(content string, fileName string) {
+	if content == "" {
+		return
+	}
+
 	file, err := os.Create(fileName)
 
 	if err := os.Chmod(fileName, 0664); err != nil {
@@ -41,7 +47,6 @@ func CreateFile(content string, fileName string) {
 	w := bufio.NewWriter(file)
 	if err != nil {
 		fmt.Println(err)
-		panic("Ошибка открытия файла")
 	}
 	defer func(file *os.File) {
 		err := file.Close()

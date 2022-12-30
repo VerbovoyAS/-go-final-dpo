@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"go-final-dpo/src/enum"
 	st "go-final-dpo/src/structure"
 	"sort"
@@ -29,8 +28,6 @@ func GetResultData(data st.Data) (res st.ResultT) {
 	status, errMessage := getStatusResult(&res)
 	res.Status = status
 	res.Error = errMessage
-
-	fmt.Println(res)
 
 	return
 }
@@ -171,33 +168,33 @@ func getStatusResult(res *st.ResultT) (status bool, errMessage string) {
 	data := res.Data
 	status = true
 
-	if data.SMS == nil {
-		errMessage += "Данны по SMS пустые"
+	if data.SMS[0] == nil || data.SMS[1] == nil {
+		errMessage += "Данны по SMS пустые "
 		status = false
 	}
 
-	if data.MMS == nil {
-		errMessage += "Данны по MMS пустые"
+	if data.MMS[0] == nil || data.MMS[1] == nil {
+		errMessage += "Данны по MMS пустые "
 		status = false
 	}
 
 	if data.VoiceCall == nil {
-		errMessage += "Данны по Voice Call пустые"
+		errMessage += "Данны по Voice Call пустые "
 		status = false
 	}
 
 	if data.Email == nil {
-		errMessage += "Данны по Email пустые"
+		errMessage += "Данны по Email пустые "
 		status = false
 	}
 
-	if data.Support == nil {
-		errMessage += "Данны по Support пустые"
+	if data.Support[0] == 0 && data.Support[1] == 0 {
+		errMessage += "Данны по Support пустые "
 		status = false
 	}
 
 	if data.Incidents == nil {
-		errMessage += "Данны по Incidents пустые"
+		errMessage += "Данны по Incidents пустые "
 		status = false
 	}
 
