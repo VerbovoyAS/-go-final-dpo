@@ -24,7 +24,7 @@ func main() {
 	router.HandleFunc(app.PathMyServerUrl(), func(w http.ResponseWriter, r *http.Request) {
 
 		if r.Method != http.MethodGet {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(http.StatusInternalServerError)
 			_, _ = w.Write([]byte("Не верно указан метод, используйте метод GET"))
 			return
 		}
